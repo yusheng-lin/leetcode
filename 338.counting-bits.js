@@ -9,30 +9,19 @@
  * @param {number} n
  * @return {number[]}
  */
-var cache = [];
 var countBits = function(n) {
-    var result = [];
-    for(var i=0; i <=n; i++)
+    const arr = [0];
+    for(let i = 1; i <=n; i++) 
     {
-        var num = cache[i];
-        if (num == undefined) 
-        {
-            num = help(i);
-            cache[i] = num;
+        var t = i;
+        var c = 0;
+        while(t){
+            if (t & 1 === 1) c++;
+            t = t >>> 1;            
         }
-        result.push(num)
+        arr[i] = c;    
     }
-    return result;
+    return arr;
 };
-
-function help(n){
-    var sum = 0;
-    while(n > 0){
-        var r = n%2;
-        sum+=r;
-        n = n >> 1;
-    }
-    return sum;
-}
 // @lc code=end
 
