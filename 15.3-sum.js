@@ -20,7 +20,7 @@ var threeSum = function(nums) {
         var num = nums[i];
         
         if (num > 0) break;
-        if (i > 0 && num === nums[i-1]) continue;
+        if (i > 0 && num === nums[i-1]) continue; //prevent duplicate
         var from = i+1 , to = nums.length-1;
         
         while(from < to)
