@@ -10,18 +10,18 @@
  * @return {number[]}
  */
 var countBits = function(n) {
-    const arr = [0];
-    for(let i = 1; i <=n; i++) 
-    {
+    const results = [0];
+
+    for(var i=1;i<=n;i++){
         var t = i;
-        var c = 0;
-        while(t){
-            if (t & 1 === 1) c++;
-            t = t >>> 1;            
+        var sum = 0;
+        while(t !== 0){
+            if (t & 1) sum++
+            t = t >> 1;
         }
-        arr[i] = c;    
+        results.push(sum);
     }
-    return arr;
+    return results;
 };
 // @lc code=end
 

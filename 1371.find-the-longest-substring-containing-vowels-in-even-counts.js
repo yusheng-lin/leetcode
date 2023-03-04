@@ -10,34 +10,33 @@
  * @return {number}
  */
 var findTheLongestSubstring = function(s) {
-    const masks = {
+    const vowels = {
         'a':1,
         'e':2,
         'i':4,
         'o':8,
         'u':16
     };
-    
-    var maxlen=0, status=0;
-    const states = { 0: -1};
-    for(var i=0;i<s.length;i++)
-    {
-        var c = s[i];
-        var mask = masks[c];
 
-        if (mask !== undefined)
-        {
-            status^=mask;
-            
-            if (states[status] === undefined)
-                states[status] = i;
+    let max = 0;
+    let status = 0;
+    const dp = new Map();
+    dp.set(0,-1);
+    for(var i=0;i < s.length; i++)
+    {
+        let c = s[i];
+        let num = vowels[c];
+        if(num){
+            status^=num;
+            let fisrt = dp.get(status);
+            if(fisrt === undefined){
+                dp.set(status,i)
+            }
         }
-            
-        var len = i - states[status];
-        if(len > maxlen) maxlen =len;
+        max = Math.max(i-dp.get(status),max);
     }
 
-    return maxlen;
+    return max;
 };
 // @lc code=end
 

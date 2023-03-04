@@ -9,30 +9,31 @@
  * @param {character[][]} grid
  * @return {number}
  */
+const dirs= [[1,0],[-1,0],[0,1],[0,-1]];
 var numIslands = function(grid) {
-    var h = grid.length, w = grid[0].length;
-    var mark = 0;
-    for(var i =0; i< h; i++){
-        for(var j=0;j<w;j++){
-            if (grid[i][j] === '1'){
-                mark += 1;
-                dfs(i,j,h,w,grid);
-            }                
+    const h = grid.length, w = grid[0].length;
+    let counts = 0;
+
+    for(let i=0;i<h;i++){
+        for(let j=0;j<w;j++){
+            if(grid[i][j]==='1'){
+                counts++;
+                dfs(i,j);
+            }
         }
     }
-    return mark;
-};
-const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
 
-function dfs(i,j,h,w,grid){
-    grid[i][j] = -1;
-    
-    for(var [x,y] of dirs){
-        x = i+x, y = j+y;
-        if (x < 0 || y < 0 || x == h || y == w || grid[x][y] !== '1')  
-            continue;
-        dfs(x,y,h,w,grid);    
+    return counts;
+
+    function dfs(x,y){
+        grid[x][y] = '0';
+        for(let dir of dirs){
+            let nx = x+dir[0], ny = y+dir[1];
+            if(nx < 0 || ny < 0 || nx === h || ny === w || grid[nx][ny] !=='1')
+                continue;
+            dfs(nx,ny);        
+        }
     }
-}
+};
 // @lc code=end
 

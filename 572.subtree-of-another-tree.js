@@ -19,24 +19,19 @@
  * @return {boolean}
  */
 var isSubtree = function(root, subRoot) {
-    if (root && subRoot)
-    {
-        if (compare(root, subRoot)) return true;
-        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
-    }
-    return root === subRoot;
+    if (compare(root,subRoot)) return true;
+
+    if((root.left && isSubtree(root.left, subRoot)) || (root.right && isSubtree(root.right, subRoot)))
+        return true;
+
+    return false;
 };
 
-function compare(root,subRoot)
+function compare(node1, node2)
 {
-    if (root && subRoot)
-    {
-        return root.val === subRoot.val
-        && compare(root.left,subRoot.left)
-        && compare(root.right,subRoot.right);
-    }
-    return root === subRoot;
+    if (node1 && node2) 
+        return node1.val === node2.val && compare(node1.left, node2.left) && compare(node1.right,node2.right);
+    return node1 === node2;
 }
-
 // @lc code=end
 

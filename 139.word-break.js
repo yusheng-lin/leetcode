@@ -11,20 +11,21 @@
  * @return {boolean}
  */
 var wordBreak = function(s, wordDict) {
-    const dp =[-1];
+    var vists = [-1];
 
-    for(var i=0;i<s.length;i++)
+    for (var i = 0; i < s.length;i++)
     {
-        for(var j=dp.length-1;j >=0;j--)
+        for(var j=vists.length-1; j>=0;j--)
         {
-            var sub = s.substring(dp[j]+1,i+1);
-            if (wordDict.includes(sub)){
-                dp.push(i);
+            var str = s.substring(vists[j]+1,i+1);
+
+            if (wordDict.includes(str)){
+                vists.push(i);
                 break;
             }
         }
     }
-    return dp.pop() === (s.length -1);
+    return vists[vists.length-1] === s.length-1;
 };
 // @lc code=end
 

@@ -10,27 +10,29 @@
  * @return {boolean}
  */
 var canBeIncreasing = function(nums) {
-   var len = lis(nums);
-   return nums.length - len < 2;
+    var maxlen = lis(nums);
+    return nums.length - maxlen < 2;
 };
 
-function lis(nums)
-{
-    var dp = new Array(nums.length);
+function lis(nums){
+    let max = 0;
+    const dp = new Array(nums.length);
     dp.fill(1);
-    var max = 0;
-    for(var i =1; i< nums.length;i++)
-    {
-        var num = nums[i];
 
-        for(var j=0; j < i; j++){
+    for(let i=1;i<nums.length;i++)
+    {
+        const num = nums[i];
+
+        for(let j=0;j<i;j++)
+        {
             if (num > nums[j])
-                dp[i] = Math.max(dp[i], dp[j]+1);
+                dp[i] = Math.max(dp[j] + 1 , dp[i]);
         }
-        if (dp[i] > max)
-            max = dp[i];
+
+        if(dp[i] > max) max = dp[i];
     }
     return max;
 }
+
 // @lc code=end
 

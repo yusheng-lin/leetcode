@@ -10,19 +10,20 @@
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    const results =[];
-    helper([],nums,results);
+    const results = [];
+    
+    const func = function(c, other)
+    {
+        results.push(c);
+        
+        while(other.length > 0)
+        {
+            var next = other.shift();
+            func(c.concat(next), other.slice());
+        }
+    };
+    func([],nums);
     return results;
 };
-
-function helper(each, rest ,results)
-{
-    results.push(each);
-    
-    while(rest.length > 0)
-    {
-        helper(each.concat(rest.shift()), rest.slice(), results);
-    }
-}
 // @lc code=end
 

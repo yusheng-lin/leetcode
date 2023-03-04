@@ -19,24 +19,21 @@
  * @param {TreeNode} q
  * @return {TreeNode}
  */
-
-/* 
-只需滿足下面條件即可
-       node
-    less   large
-*/
 var lowestCommonAncestor = function(root, p, q) {
-    var temp  = p.val > q.val ? [q, p]:[p, q];
-    return compare(root, temp[0], temp[1]);
-};
-
-function compare(root, less, large){
     if (!root) return root;
-    if (root.val > large.val) return compare(root.left, less, large);
-    if (root.val < less.val) return compare (root.right, less, large);
-    return root;
-}
+    
+    const [big, small] = p.val > q.val ? [p,q] : [q,p];
 
+    function func(node, big, small)
+    {
+        if (node.val > big.val)
+            return func(node.left,big,small);
+        if (node.val < small.val)
+            return func(node.right,big,small);
 
+        return node;
+    }
+    return func(root,big,small);
+};
 // @lc code=end
 

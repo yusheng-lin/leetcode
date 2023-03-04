@@ -1,37 +1,56 @@
-function getNodes(n){
-    var next, head;
-    while(n > 0){
-        if (next){
-            next.next = head;
-            head = next;
+root :{
+    val:6,
+    left:{
+        val:2,
+        left:{
+            val:0
+        },
+        right:{
+            val:4,
+            left:{
+                val:3
+            },
+            right:{
+                val:5
+            }
         }
-        next = {
-            val : n--
-        };
+    },
+    right:{
+        val:8,
+        left:{
+            val:7
+        },
+        right:{
+            val:9
+        }
     }
-    next.next = head;
-    return next;
 }
 
-
-var tree = {
-    "val":1,
-    "left":{
-       "val":2,
-       "left":{
-          "val":3
-       },
-       "right":{
-          "val":4
-       }
+tree:{
+    val:3,
+    left:{
+        val:4,
+        left:{
+            val:1
+        },
+        right:{
+            val:2,
+            left:{
+                val:0
+            }
+        }
     },
-    "right":{
-       "val":2,
-       "left":{
-          "val":4
-       },
-       "right":{
-          "val":3
-       }
+    right:{
+        val:5
     }
- };
+}
+
+sub:{
+    val:4,
+    left:{
+        val:1
+    },
+    right:{
+        val:2
+    }
+}

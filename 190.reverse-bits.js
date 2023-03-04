@@ -10,14 +10,14 @@
  * @return {number} - a positive integer
  */
 var reverseBits = function(n) {
-   var sum=0;
-   for(var i=0;i<32;i++)
-   {
-        sum *=2;
-        sum += (n&1);
-        n = n>>>1;
-   }
-   return sum;
+    let sum = 0;
+    
+    for(let i=0;i<32;i++){
+       sum = sum * 2 + (n & 1);
+       n = n >>> 1;
+    }
+
+    return sum;
 };
 // @lc code=end
 
